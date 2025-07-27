@@ -7,4 +7,146 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* You can keep this minimal reset in index.css */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Анимации для игроков Барселоны */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes barcelonaGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(165, 0, 68, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(165, 0, 68, 0.8), 0 0 30px rgba(0, 77, 152, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(165, 0, 68, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Стили для игроков Барселоны */
+.barcelona-player {
+  animation: barcelonaGlow 3s ease-in-out infinite;
+}
+
+.barcelona-text {
+  animation: pulse 2s infinite;
+}
+
+.barcelona-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Улучшенные стили для карточек */
+.player-card {
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для прогресс-бара бюджета */
+.budget-progress {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Стили для кнопок Барселоны */
+.barcelona-button {
+  background: linear-gradient(45deg, #A50044 30%, #004D98 90%);
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.barcelona-button:hover {
+  background: linear-gradient(45deg, #8B0038 30%, #003D7A 90%);
+  transform: scale(1.05);
+}
+
+/* Фиксированная высота для карточек игроков */
+.player-card-container {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стили для кнопок в карточках */
+.player-card-button {
+  margin-top: auto !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .player-card {
+    margin-bottom: 1rem;
+    height: auto;
+    min-height: 350px;
+  }
+  
+  .header-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .header-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .player-card-container {
+    height: auto;
+    min-height: 350px;
+  }
+}
+
+/* Стили для сетки карточек */
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (max-width: 600px) {
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Обеспечиваем видимость кнопок */
+.player-card .MuiButton-root {
+  position: relative !important;
+  z-index: 10 !important;
+  margin-top: auto !important;
+}
