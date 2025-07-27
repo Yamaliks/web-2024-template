@@ -12,7 +12,14 @@ export const calculateTeamStats = (selectedPlayers: Player[]): TeamStats => {
     };
   }
 
-  const totalCost = selectedPlayers.reduce((sum, player) => sum + player.price, 0);
+  // Игроки Барселоны не тратят бюджет, но показываем их цену для отображения
+  const totalCost = selectedPlayers.reduce((sum, player) => {
+    if (player.isBarcelona) {
+      return sum; // Игроки Барсы бесплатны
+    }
+    return sum + player.price;
+  }, 0);
+  
   const averageRating = selectedPlayers.reduce((sum, player) => sum + player.rating, 0) / selectedPlayers.length;
   const barcelonaPlayers = selectedPlayers.filter(player => player.isBarcelona).length;
   
@@ -40,6 +47,12 @@ export const canAddPlayer = (
     return { canAdd: false, reason: "Максимум 11 игроков в команде" };
   }
   
+  // Игроки Барселоны всегда можно добавить (они бесплатны)
+  if (player.isBarcelona) {
+    return { canAdd: true };
+  }
+  
+  // Для остальных игроков проверяем бюджет
   if (stats.totalCost + player.price > budget) {
     return { canAdd: false, reason: "Превышен бюджет команды" };
   }

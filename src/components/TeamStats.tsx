@@ -87,20 +87,25 @@ const TeamStats = ({ stats, budget }: TeamStatsProps) => {
           </Box>
           <LinearProgress 
             variant="determinate" 
-            value={Math.min(budgetUsage, 100)} 
+            value={Math.min((stats.totalCost / budget) * 100, 100)} 
             sx={{ 
               height: 8, 
               borderRadius: 4,
               backgroundColor: '#e0e0e0',
               '& .MuiLinearProgress-bar': {
-                backgroundColor: isBudgetExceeded ? '#f44336' : '#4caf50',
+                backgroundColor: stats.totalCost > budget ? '#f44336' : '#4caf50',
                 borderRadius: 4
               }
             }} 
           />
-          {isBudgetExceeded && (
+          {stats.totalCost > budget && (
             <Typography variant="caption" color="error" sx={{ display: 'block', mt: 1 }}>
               ⚠️ Превышен бюджет на {(stats.totalCost - budget)}M €
+            </Typography>
+          )}
+          {stats.barcelonaPlayers > 0 && (
+            <Typography variant="caption" color="success.main" sx={{ display: 'block', mt: 1 }}>
+              🎉 Игроки Барселоны бесплатны! Сэкономлено: {stats.barcelonaPlayers * 50}M+ €
             </Typography>
           )}
         </Box>

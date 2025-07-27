@@ -73,6 +73,7 @@ const Recommendations = ({ topPlayers }: RecommendationsProps) => {
   // Получаем URL изображения игрока
   const getPlayerImageUrl = (player: Player) => {
     const playerImages: { [key: string]: string } = {
+      // Игроки Барселоны
       "Robert Lewandowski": "https://upload.wikimedia.org/wikipedia/commons/8/82/Robert_Lewandowski_2018.jpg",
       "Marc-Andre ter Stegen": "https://upload.wikimedia.org/wikipedia/commons/7/72/Marc-Andr%C3%A9_ter_Stegen_2018.jpg",
       "Pedri": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Pedri_2021.jpg/800px-Pedri_2021.jpg",
@@ -81,6 +82,15 @@ const Recommendations = ({ topPlayers }: RecommendationsProps) => {
       "Frenkie de Jong": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Frenkie_de_Jong_2021.jpg/800px-Frenkie_de_Jong_2021.jpg",
       "Joao Cancelo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Jo%C3%A3o_Cancelo_2019.jpg/800px-Jo%C3%A3o_Cancelo_2019.jpg",
       "Raphinha": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Raphinha_2022.jpg/800px-Raphinha_2022.jpg",
+      "Lamine Yamal": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Lamine_Yamal_2024.jpg/800px-Lamine_Yamal_2024.jpg",
+      "Fermin Lopez": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Fermin_Lopez_2024.jpg/800px-Fermin_Lopez_2024.jpg",
+      "Pau Cubarsi": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Pau_Cubarsi_2024.jpg/800px-Pau_Cubarsi_2024.jpg",
+      "Hector Fort": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Hector_Fort_2024.jpg/800px-Hector_Fort_2024.jpg",
+      "Vitor Roque": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Vitor_Roque_2024.jpg/800px-Vitor_Roque_2024.jpg",
+      "Alejandro Balde": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Alejandro_Balde_2023.jpg/800px-Alejandro_Balde_2023.jpg",
+      "Inigo Martinez": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Inigo_Martinez_2023.jpg/800px-Inigo_Martinez_2023.jpg",
+      
+      // Другие звезды
       "Erling Haaland": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Erling_Haaland_2023.jpg/800px-Erling_Haaland_2023.jpg",
       "Kevin De Bruyne": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Kevin_De_Bruyne_2019.jpg/800px-Kevin_De_Bruyne_2019.jpg",
       "Kylian Mbappe": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_v_PSG_850_1707.jpg/800px-2019-07-17_SG_Dynamo_Dresden_v_PSG_850_1707.jpg",
@@ -97,7 +107,25 @@ const Recommendations = ({ topPlayers }: RecommendationsProps) => {
       "Manuel Neuer": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Manuel_Neuer_2018.jpg/800px-Manuel_Neuer_2018.jpg",
       "Ruben Dias": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ruben_Dias_2021.jpg/800px-Ruben_Dias_2021.jpg",
       "Bernardo Silva": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bernardo_Silva_2021.jpg/800px-Bernardo_Silva_2021.jpg",
-      "Lautaro Martinez": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Lautaro_Martinez_2022.jpg/800px-Lautaro_Martinez_2022.jpg"
+      "Lautaro Martinez": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Lautaro_Martinez_2022.jpg/800px-Lautaro_Martinez_2022.jpg",
+      "Marcus Rashford": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Marcus_Rashford_2023.jpg/800px-Marcus_Rashford_2023.jpg",
+      "Bruno Fernandes": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bruno_Fernandes_2023.jpg/800px-Bruno_Fernandes_2023.jpg",
+      "Harry Kane": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Harry_Kane_2023.jpg/800px-Harry_Kane_2023.jpg",
+      "Jamal Musiala": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jamal_Musiala_2023.jpg/800px-Jamal_Musiala_2023.jpg",
+      "Florian Wirtz": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Florian_Wirtz_2024.jpg/800px-Florian_Wirtz_2024.jpg",
+      "Victor Boniface": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Victor_Boniface_2024.jpg/800px-Victor_Boniface_2024.jpg",
+      "Bukayo Saka": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bukayo_Saka_2023.jpg/800px-Bukayo_Saka_2023.jpg",
+      "Martin Odegaard": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Martin_Odegaard_2023.jpg/800px-Martin_Odegaard_2023.jpg",
+      "Declan Rice": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Declan_Rice_2023.jpg/800px-Declan_Rice_2023.jpg",
+      "William Saliba": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/William_Saliba_2023.jpg/800px-William_Saliba_2023.jpg",
+      "Phil Foden": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Phil_Foden_2023.jpg/800px-Phil_Foden_2023.jpg",
+      "Rodri": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Rodri_2023.jpg/800px-Rodri_2023.jpg",
+      "Ederson": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ederson_2023.jpg/800px-Ederson_2023.jpg",
+      "Thibaut Courtois": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Thibaut_Courtois_2023.jpg/800px-Thibaut_Courtois_2023.jpg",
+      "Antonio Rudiger": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Antonio_Rudiger_2023.jpg/800px-Antonio_Rudiger_2023.jpg",
+      "Federico Valverde": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Federico_Valverde_2023.jpg/800px-Federico_Valverde_2023.jpg",
+      "Toni Kroos": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Toni_Kroos_2023.jpg/800px-Toni_Kroos_2023.jpg",
+      "Luka Modric": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Luka_Modric_2023.jpg/800px-Luka_Modric_2023.jpg"
     };
     
     return playerImages[player.name] || null;
@@ -195,7 +223,7 @@ const Recommendations = ({ topPlayers }: RecommendationsProps) => {
                           </Typography>
                         </Box>
                         <Typography variant="body2" color="text.secondary">
-                          {player.price}M €
+                          {player.isBarcelona ? 'БЕСПЛАТНО' : `${player.price}M €`}
                         </Typography>
                       </Box>
                     </Box>
@@ -214,7 +242,7 @@ const Recommendations = ({ topPlayers }: RecommendationsProps) => {
           textAlign: 'center'
         }}>
           <Typography variant="body2" color="text.secondary">
-            💡 Совет: Игроки Барселоны дают +2 балла к индексу мечты!
+            💡 Совет: Игроки Барселоны бесплатны и дают +2 балла к индексу мечты!
           </Typography>
         </Box>
       </CardContent>

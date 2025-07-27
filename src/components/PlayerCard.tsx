@@ -243,15 +243,15 @@ const PlayerCard = ({ player, isSelected, onToggleSelection, canAdd, reason }: P
           display: 'flex', 
           justifyContent: 'space-between', 
           alignItems: 'center', 
-          mb: 1.5,
-          p: 1,
-          borderRadius: 1.5,
+          mb: 2,
+          p: 1.5,
+          borderRadius: 2,
           background: 'rgba(0, 0, 0, 0.03)'
         }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Euro sx={{ fontSize: 14, mr: 0.5, color: '#4caf50' }} />
-            <Typography variant="body2" fontWeight="bold" color="#4caf50" sx={{ fontSize: '0.875rem' }}>
-              {player.price}M €
+            <Euro sx={{ fontSize: 14, mr: 0.5, color: player.isBarcelona ? '#A50044' : '#4caf50' }} />
+            <Typography variant="body2" fontWeight="bold" color={player.isBarcelona ? '#A50044' : '#4caf50'} sx={{ fontSize: '0.875rem' }}>
+              {player.isBarcelona ? 'БЕСПЛАТНО' : `${player.price}M €`}
             </Typography>
           </Box>
           
